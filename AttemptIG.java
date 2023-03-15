@@ -1,19 +1,6 @@
 import java.util.Scanner;
 
 public class AttemptIG {
-    
-    public static void writeToBoard(String [][]Callista, String selectedSpot, String XOvalue){
-
-        for(int c = 0; c < 3; c++){
-            for(int i = 0; i < 3; i++)
-            {
-                if (Callista[c][i].equals(selectedSpot)){
-                    Callista[c][i] = Callista[c][i].replace(selectedSpot, XOvalue);   
-                    break;  
-               }  
-            }
-        }
-    }
 
     public static boolean isWinner(String [][] Callista){
         String tripleX = "XXX";
@@ -58,20 +45,10 @@ public class AttemptIG {
         return !T;
     }
 
-    public static void printBoard(String[][] Board){
-  
-       System.out.println ("     |   |    ");
-       System.out.println ("   " + Board[0][0] + " | " + Board[0][1] + " | " + Board[0][2] + "");
-       System.out.println (" ----+---+---- ");
-       System.out.println ("   " + Board[1][0] + " | " + Board[1][1] + " | " + Board[1][2] + "");
-       System.out.println (" ----+---+---- ");
-       System.out.println ("   " + Board[2][0] + " | " + Board[2][1] + " | " + Board[2][2] + "");
-       System.out.println ("     |   |    ");
-
-    }
 
     public static void main(String[] args){  
-    
+        TicTacToe_Board board = new TicTacToe_Board();
+
         Boolean boardValue = true;
         String[][] Callista = {{"1", "2", "3"}, { "4", "5", "6"}, {"7", "8", "9"}};
 
@@ -104,8 +81,8 @@ public class AttemptIG {
             String selectedSpot = Integer.toString(selectedNumber);
 
             if (boardValue){
-                writeToBoard(Callista, selectedSpot, "X");
-                printBoard(Callista);
+               board.writeToBoard(Callista, selectedSpot, "X"); //writeToBoard(Callista, selectedSpot, "X");
+               board.printBoard(Callista);
 
                 if (isWinner(Callista) == true){
                     won = true;
@@ -117,8 +94,9 @@ public class AttemptIG {
                 }            
             }                
             else{
-                writeToBoard(Callista, selectedSpot, "O");
-                printBoard(Callista);
+                board.writeToBoard(Callista, selectedSpot, "O");
+                //writeToBoard(Callista, selectedSpot, "O");
+                board.printBoard(Callista);
 
                 if (isWinner(Callista) == true){
                     won = true;
@@ -136,5 +114,5 @@ public class AttemptIG {
         }
         
     user.close();
-    } 
+    }
 }
